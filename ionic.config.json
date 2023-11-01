@@ -1,0 +1,7 @@
+{
+  "name": "my-lab4-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
