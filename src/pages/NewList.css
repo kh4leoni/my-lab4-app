@@ -1,0 +1,101 @@
+
+.add-item-div {
+  display: flex;
+  
+}
+
+.add-item-field {
+  position: absolute;
+  bottom: 8vh;
+  left: 0;
+  right: 0;
+}
+
+.item-list {
+ 
+  height: 61vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: solid 1px black;
+  padding: 20px;
+  border-radius: 20px;
+
+}
+.custom-text-field {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.item-lista {
+  background: none;
+}
+
+.list-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+  border-bottom: solid 1px ;
+  
+  
+}
+
+.done-item {
+  text-decoration: line-through;
+}
+
+.user-button {
+
+  border-radius: 100px;
+  font-size: 20px;
+
+
+  max-width: 50px;
+  max-height: 50px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.item-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 5%;
+  border: solid 1px black;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.save-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  bottom: 23.5%;
+  right: 8.5%;
+}
+
+.save-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  border: 1px black solid;
+  padding: 5px 20px;
+  border-radius: 15px;
+}
+
+.toolbar-buttons {
+  display: flex;
+  justify-content: space-between;
+}

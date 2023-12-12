@@ -1,7 +1,11 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, useParams } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import NewList from './pages/NewList';
+import SavedLists from './pages/SavedLists';
+import ShoppingList from './pages/ShoppingList';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -22,20 +26,34 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+
+import { AuthProvider } from './context/AuthContext';
+
 setupIonicReact();
 
+const ShoppingListWrapper: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+
+  return <ShoppingList id={id} />;
+};
+
 const App: React.FC = () => (
+
   <IonApp>
+    <AuthProvider>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
+        <Route exact path="/" component={Login}/>
+        <Route exact path="/register" component={Register}/>
+        <Route exact path="/new" component={NewList}/>
+        <Route exact path="/lists" component={SavedLists} />
+        <Route exact path="/lists/:id" component={ShoppingListWrapper} />
+
+     
+       
       </IonRouterOutlet>
     </IonReactRouter>
+    </AuthProvider>
   </IonApp>
 );
 
