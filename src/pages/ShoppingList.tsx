@@ -181,7 +181,7 @@ const ShoppingList: React.FC<ShoppinListProps> = ({ id }) => {
       <IonHeader>
         <IonToolbar className="tool-bar-chart">
           <div className="toolbar-buttons">
-            <IonBackButton></IonBackButton>
+            <IonBackButton defaultHref="/lists"></IonBackButton>
             <IonButton onClick={logOut} color="primary">
               {`User: ${currentUser?.email} - Logout`}
             </IonButton>
@@ -240,8 +240,7 @@ const ShoppingList: React.FC<ShoppinListProps> = ({ id }) => {
               <div className="item-add">
                 <IonInput
                   className="item-input-field"
-                  type="text"
-                  placeholder="milk"
+                  type="text"                  
                   label="Type item name"
                   labelPlacement="floating"
                   clearOnEdit={true}

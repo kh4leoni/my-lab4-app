@@ -56,7 +56,7 @@ const Register: React.FC = () => {
       present("Creating account") 
       setTimeout(() => {
         dismiss()
-        router.push('/app')
+        router.push('/lists')
       setEmail("")
       setPassword("")
       setConfirmPassword("")  

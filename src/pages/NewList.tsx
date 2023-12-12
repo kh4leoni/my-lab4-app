@@ -72,6 +72,9 @@ const NewList: React.FC = () => {
 
 
   useEffect(() => {
+    if (!currentUser) {
+      history.push("/")
+    }
     getItems();
 
   }, []);
@@ -183,9 +186,11 @@ const NewList: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar className="tool-bar-chart">
-          <IonButton expand="block" onClick={logOut} color="primary">
-            {`User: ${currentUser?.email} - Logout`}
-          </IonButton>
+          <div className="toolbar-buttons">
+            <IonBackButton defaultHref="/lists"></IonBackButton>
+            
+          </div>
+ 
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding" scrollY={false}>

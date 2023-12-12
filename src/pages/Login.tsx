@@ -29,13 +29,17 @@ import { UserCredential, signInWithEmailAndPassword } from "firebase/auth";
 import { useToast } from "../hooks/useToast";
 import Menu from "./NewList";
 import { useAuth } from "../context/AuthContext";
+import { useHistory } from "react-router";
+
 
 type User = {
   email: string | null
 }
 
 const Login: React.FC = () => {
+  const history = useHistory()
   const router = useIonRouter();
+  const { currentUser } = useAuth()
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,6 +50,9 @@ const Login: React.FC = () => {
   const { signIn } = useAuth()
 
   useEffect(() => {
+    if (currentUser) {
+      history.push("/welcome")
+    }
 
   },[present])
 
@@ -61,7 +68,7 @@ const Login: React.FC = () => {
         setTimeout(() => {
           dismiss()
 
-          router.push('/app')
+          router.push('/welcome')
           setEmail("")
           setPassword("")
         },1500)

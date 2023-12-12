@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import NewList from './pages/NewList';
 import SavedLists from './pages/SavedLists';
 import ShoppingList from './pages/ShoppingList';
+import Welcome from './pages/Welcome';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -48,6 +49,7 @@ const App: React.FC = () => (
         <Route exact path="/new" component={NewList}/>
         <Route exact path="/lists" component={SavedLists} />
         <Route exact path="/lists/:id" component={ShoppingListWrapper} />
+        <Route exact path="/welcome" component={Welcome}/>
 
      
        
