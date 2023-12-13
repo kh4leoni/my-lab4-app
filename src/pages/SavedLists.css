@@ -3,7 +3,10 @@
   flex-direction: row;
 }
 
-.add-new-button {
-  position: relative;
-  top: 80vh;
+.saved-lists {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  
 }
+

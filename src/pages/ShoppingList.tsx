@@ -13,6 +13,7 @@ import {
   IonItem,
   IonLabel,
   IonList,
+  IonMenuButton,
   IonPage,
   IonRow,
   IonText,
@@ -29,6 +30,7 @@ import {
   addCircleSharp,
   list,
   logOut,
+  menuOutline,
   saveOutline,
   trashOutline,
 } from "ionicons/icons";
@@ -52,6 +54,7 @@ import {
   DocumentReference,
   setDoc,
 } from "@firebase/firestore";
+import Menu from "../components/Menu";
 
 type ShoppinListProps = {
   id: string;
@@ -177,15 +180,17 @@ const ShoppingList: React.FC<ShoppinListProps> = ({ id }) => {
   };
 
   return (
+    <>
+    <Menu />
     <IonPage>
-      <IonHeader>
+    <IonHeader>
         <IonToolbar className="tool-bar-chart">
           <div className="toolbar-buttons">
             <IonBackButton defaultHref="/lists"></IonBackButton>
-            <IonButton onClick={logOut} color="primary">
-              {`User: ${currentUser?.email} - Logout`}
-            </IonButton>
+            
           </div>
+          <IonButtons slot="end"><IonMenuButton></IonMenuButton></IonButtons>
+ 
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding" scrollY={false}>
@@ -237,7 +242,9 @@ const ShoppingList: React.FC<ShoppinListProps> = ({ id }) => {
               sizeXl="4"
               className="add-item-field ion-padding"
             >
+              <IonText>Add new items to the list</IonText>
               <div className="item-add">
+                
                 <IonInput
                   className="item-input-field"
                   type="text"                  
@@ -256,6 +263,8 @@ const ShoppingList: React.FC<ShoppinListProps> = ({ id }) => {
         </IonGrid>
       </IonContent>
     </IonPage>
+    </>
+    
   );
 };
 

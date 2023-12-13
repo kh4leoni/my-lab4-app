@@ -4,12 +4,7 @@
   
 }
 
-.add-item-field {
-  position: absolute;
-  bottom: 8vh;
-  left: 0;
-  right: 0;
-}
+
 
 .item-list {
  
@@ -72,7 +67,14 @@
   margin-bottom: 5%;
   border: solid 1px black;
   border-radius: 20px;
-  padding: 10px 20px;
+  padding: 5px 20px;
+  margin-top: 20px;
+}
+
+.item-input-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .save-button {
@@ -80,9 +82,7 @@
   align-items: center;
   justify-content: center;
   align-content: center;
-  position: absolute;
-  bottom: 23.5%;
-  right: 8.5%;
+
 }
 
 .save-list {
@@ -98,4 +98,11 @@
 .toolbar-buttons {
   display: flex;
   justify-content: space-between;
+  padding: 10px;
 }
+
+.save-buttons {
+  display: flex;
+  gap: 10px;
+}
+

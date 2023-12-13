@@ -1,9 +1,0 @@
-.welcome {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  gap: 50px;
-  text-align: center;
-  margin-top: 50px;
-}

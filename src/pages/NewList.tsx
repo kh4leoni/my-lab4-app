@@ -13,6 +13,7 @@ import {
   IonItem,
   IonLabel,
   IonList,
+  IonMenuButton,
   IonPage,
   IonRow,
   IonText,
@@ -27,6 +28,9 @@ import { useToast } from "../hooks/useToast";
 import {
   addCircleOutline,
   addCircleSharp,
+  checkmarkCircleOutline,
+  checkmarkOutline,
+  closeOutline,
   logOut,
   saveOutline,
   trashOutline,
@@ -47,6 +51,8 @@ import {
   doc,
   deleteDoc,
 } from "@firebase/firestore";
+import Menu from "../components/Menu";
+import { h } from "ionicons/dist/types/stencil-public-runtime";
 
 interface documentType {
   [key: string]: any;
@@ -57,12 +63,10 @@ const NewList: React.FC = () => {
   const [listName, setListName] = useState("");
   const [items, setItems] = useState<documentType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+
+
   const itemsCollectionRef = collection(db, "items");
   const shoppingListsCollectionRef = collection(db, "shoppingLists");
-
-  const history = useHistory()
-
-
 
   const getItems = async () => {
     const itemData = await getDocs(itemsCollectionRef);
@@ -72,8 +76,9 @@ const NewList: React.FC = () => {
 
 
   useEffect(() => {
+  
     if (!currentUser) {
-      history.push("/")
+      router.push("/")
     }
     getItems();
 
@@ -89,7 +94,7 @@ const NewList: React.FC = () => {
   useEffect(() => {}, [items]);
 
   const addItem = async (e: any) => {
-    console.log(currentUser?.uid);
+  
 
     if (newItem === "") {
       toast("Add valid item name", "top");
@@ -135,16 +140,6 @@ const NewList: React.FC = () => {
     getItems();
   };
 
-  const logOut = async () => {
-    await signOut(auth);
-    present("Loggin out...");
-    setTimeout(() => {
-      dismiss();
-      router.push("/");
-    }, 1500);
-    setNewItem("");
-  };
-
   const openSave = (e: any) => {
     e.preventDefault();
     setIsOpen(true);
@@ -166,8 +161,8 @@ const NewList: React.FC = () => {
       setTimeout(() => {
         dismiss();
         toast(`"${listName}" saved!`, "bottom")
-        history.push("/lists")
-      },1300)
+          router.push("/lists")
+      },1000)
       
 
       setIsOpen(false);
@@ -182,7 +177,10 @@ const NewList: React.FC = () => {
     setIsOpen(false)
   } 
 
+
   return (
+    <>
+    <Menu />
     <IonPage>
       <IonHeader>
         <IonToolbar className="tool-bar-chart">
@@ -190,6 +188,7 @@ const NewList: React.FC = () => {
             <IonBackButton defaultHref="/lists"></IonBackButton>
             
           </div>
+          <IonButtons slot="end"><IonMenuButton></IonMenuButton></IonButtons>
  
         </IonToolbar>
       </IonHeader>
@@ -242,7 +241,33 @@ const NewList: React.FC = () => {
               sizeXl="4"
               className="add-item-field ion-padding"
             >
-              <div className="item-add">
+             
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+
+        {!isOpen ? (
+          <IonButton className="save-button" onClick={openSave} expand="block">
+            Save shopping list
+          </IonButton>
+        ) : (
+          <div className="save-list">
+            <IonInput
+              type="text"              
+              label="Give your list a name"
+              labelPlacement="floating"
+              clearOnEdit={true}
+              value={listName}
+              onKeyUp={(e: any) => setListName(e.target.value)}
+            ></IonInput>
+            <div className="save-buttons">
+              <IonButton onClick={saveList}><IonIcon icon={checkmarkOutline}/></IonButton>
+              <IonButton onClick={cancelSave}><IonIcon icon={closeOutline}/></IonButton>
+            </div>
+       
+          </div>
+        )}
+         <div className="item-add">
                 <IonInput
                   className="item-input-field"
                   type="text"
@@ -257,31 +282,9 @@ const NewList: React.FC = () => {
                   <IonIcon icon={addCircleOutline} />
                 </IonFabButton>
               </div>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-
-        {!isOpen ? (
-          <IonButton className="save-button" onClick={openSave} expand="block">
-            Save shopping list
-          </IonButton>
-        ) : (
-          <div className="save-list">
-            <IonInput
-              type="text"
-              placeholder="My shopping list"
-              label="Give your list a name"
-              labelPlacement="floating"
-              clearOnEdit={true}
-              value={listName}
-              onKeyUp={(e: any) => setListName(e.target.value)}
-            ></IonInput>
-            <IonButton onClick={saveList}>Save</IonButton>
-            <IonButton onClick={cancelSave}>Cancel</IonButton>
-          </div>
-        )}
       </IonContent>
     </IonPage>
+    </>
   );
 };
 

@@ -50,8 +50,9 @@ const Login: React.FC = () => {
   const { signIn } = useAuth()
 
   useEffect(() => {
+ 
     if (currentUser) {
-      history.push("/welcome")
+      history.push("/lists")
     }
 
   },[present])
@@ -68,7 +69,7 @@ const Login: React.FC = () => {
         setTimeout(() => {
           dismiss()
 
-          router.push('/welcome')
+          router.push('/lists')
           setEmail("")
           setPassword("")
         },1500)
@@ -153,7 +154,7 @@ const Login: React.FC = () => {
       <IonFooter>
         <IonToolbar color="primary" className="ion-text-center">
           <IonText className="ion-margin-top">
-            Labwork4 Applications Inc.
+            Team5 Applications Inc.
           </IonText>
         </IonToolbar>
       </IonFooter>
